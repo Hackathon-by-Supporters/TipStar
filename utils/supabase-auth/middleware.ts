@@ -43,7 +43,7 @@ export async function updateSession(request: NextRequest) {
     // ---------------------------------------------
     if (
         !user &&
-        !pathname.startsWith('/login') &&
+        !pathname.startsWith('/private') &&
         !pathname.startsWith('/auth')
     ) {
         const url = request.nextUrl.clone()
