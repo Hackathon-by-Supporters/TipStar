@@ -44,12 +44,14 @@ export async function updateSession(request: NextRequest) {
     if (
         !user &&
         !pathname.startsWith('/private') &&
-        !pathname.startsWith('/auth')
+        !pathname.startsWith('/auth') &&
+        pathname !== '/login'
     ) {
         const url = request.nextUrl.clone()
         url.pathname = '/login'
         return NextResponse.redirect(url)
     }
+
 
     // ---------------------------------------------
     // ログインユーザーの場合: レスポンスを返す
