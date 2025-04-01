@@ -1,6 +1,6 @@
 // lib/supabase-auth/middleware.ts
 
-import { CookieOptions, createServerClient } from "@supabase/ssr";
+import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 
@@ -43,7 +43,7 @@ export async function updateSession(request: NextRequest) {
     // ---------------------------------------------
     if (
         !user &&
-        !pathname.startsWith('/private') &&
+        !pathname.startsWith('/login') &&
         !pathname.startsWith('/auth') &&
         pathname !== '/login'
     ) {
