@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import { signInWithGoogle } from "@/utils/supabase-auth/authGoogle"
 
 export function GoogleLoginButton() {
@@ -23,11 +22,10 @@ export function GoogleLoginButton() {
 
     return (
         <div className="space-y-6">
-            <Button
+            <button
                 onClick={handleGoogleLogin}
                 disabled={isLoading}
                 className="w-full rounded-xl bg-white border-2 border-gray-200 hover:bg-gray-50 text-gray-700 font-medium py-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-pink-200 flex items-center justify-center gap-3"
-                variant="outline"
             >
                 {isLoading ? (
                     <div className="flex items-center gap-2">
@@ -70,7 +68,7 @@ export function GoogleLoginButton() {
                         <span>Googleでログイン</span>
                     </>
                 )}
-            </Button>
+            </button>
 
             <div className="text-center">
                 <p className="text-xs text-gray-500">
