@@ -1,4 +1,3 @@
-import { footer } from "framer-motion/m";
 import Link from "next/link";
 
 export default function SiteFooter() {
