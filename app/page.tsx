@@ -1,11 +1,14 @@
-"use client";
+import { getAllTips } from "@/utils/supabasefunctions";
 
-import { motion } from "motion/react";
 
-export default function Home() {
+export default async function Home() {
+  // これが正しくSSRできてるのかは怪しいw
+  const { data } = await getAllTips();
   return (
-    <motion.button className="btn btn-xl btn-primary" animate={{ rotate: 360 }}>
-      daisyUIのボタンが使えてるか確認
-    </motion.button>
+    <ul>
+      {data?.map((tip) => (
+        <li key={tip.id}>{tip.title}: {tip.tip_text}</li>
+      ))}
+    </ul>
   );
 }
