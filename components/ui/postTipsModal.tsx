@@ -32,9 +32,9 @@ export default function PostTipsModal() {
 
         // 入力フォームから値を取得して、FormDataに格納
         const formData = new FormData();
-        formData.append("title", title);
-        formData.append("tip_text", tipText);
-        formData.append("category_id", categoryId);
+        formData.append("title", String(title));
+        formData.append("tip_text", String(tipText));
+        formData.append("category_id", String(categoryId));
 
         // utils/actions/postTip.tsのpostTip関数を呼び出す（Server action）
         const result = await postTip(formData); 
