@@ -1,11 +1,11 @@
 "use client";
 
-import { motion } from "motion/react";
-
 export default function Mytips() {
     return (
-        <motion.button className="btn btn-xl btn-primary" animate={{ rotate: 360 }}>
-            マイTips
-        </motion.button>
+        <main className="min-h-screen bg-gradient-to-b from-purple-50 to-pink-50 flex justify-center items-center">
+            <div className="container text-center">
+                Tips削除機能の画面
+            </div>
+        </main>
     );
 }

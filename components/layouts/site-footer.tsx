@@ -24,7 +24,7 @@ export default function SiteFooter() {
                                 </svg>
                             </div>
                             <span className="text-xl font-bold text-purple-600">
-                                Campus<span className="text-pink-500">Tips</span>
+                                Tip<span className="text-pink-500">Star</span>
                             </span>
                         </Link>
                         <p className="mt-4 text-sm text-gray-600">
@@ -91,7 +91,7 @@ export default function SiteFooter() {
                 </div>
 
                 <div className="mt-8 border-t border-gray-200 pt-6 text-center text-sm text-gray-500"></div>
-                    <p>© {new Date().getFullYear()} CampusTips. All rights reserved.</p> 
+                    <p>© {new Date().getFullYear()} TipStar. All rights reserved.</p> 
             </div>
         </footer>
     );
