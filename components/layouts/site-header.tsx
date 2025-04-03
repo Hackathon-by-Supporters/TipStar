@@ -90,7 +90,6 @@ export default function SiteHeader() {
                         >
                             <li><Link href="/profile">プロフィール</Link></li>
                             <li><Link href="/my-tips">マイTips</Link></li>
-                            <li><Link href="/user-setting">設定</Link></li>
                             <li><a>ログアウト</a></li>
                         </motion.ul>
                     </div>

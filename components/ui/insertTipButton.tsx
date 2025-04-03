@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 const MotionLabel = motion.label;
 
-export default function PostTipButton() {
+export default function insertTipButton() {
     return (
         <div className="mb-8 flex justify-center">
-            <MotionLabel
+            <motion.label
                 htmlFor="post-modal"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -17,7 +17,7 @@ export default function PostTipButton() {
                     +
                 </span>
                 Tipを投稿
-            </MotionLabel>
+            </motion.label>
         </div>
     )
 }

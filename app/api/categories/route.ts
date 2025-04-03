@@ -1,5 +1,5 @@
 /*
-postTipsModal.tsxはClientcomponentなので（use clientしてる）、そこでsupabaseのCRUD操作する関数呼び出すと
+insertTipsModal.tsxはClientcomponentなので（use clientしてる）、そこでsupabaseのCRUD操作する関数呼び出すと
 クライアント側にURLとANONキーが漏れちゃうらしい（？）ので、一旦APIフォルダ（サーバー側）を経由してからCRUD操作する。
 Server ActionはGETメソッド非対応っぽい（？）ので、API経由にした
 */
