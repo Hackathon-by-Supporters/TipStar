@@ -1,8 +1,7 @@
-import { supabase } from "./supabase"
+import { supabase } from "../supabase"
 
 // 全Tipsを取得(tsで型の指定してないからちょっと不便かも)
 export const getAllTips = async () => await supabase.from("tips").select("*")
 
-// Tipsの追加
 // TIpsの削除
 // ...
