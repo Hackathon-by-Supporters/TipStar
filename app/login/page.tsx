@@ -29,7 +29,7 @@
 //     )
 // }
 
-import { GoogleLoginButton } from "@/components/google-login-button"
+import { GoogleLoginButton } from "@/components/googleLoginButton"
 
 export default function LoginPage() {
     return (
