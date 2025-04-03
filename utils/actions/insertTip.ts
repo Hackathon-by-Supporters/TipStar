@@ -2,7 +2,7 @@
 import { createClient } from "@/utils/supabase-auth/server";
 
 // Tipsの追加
-export const postTip = async (formData: FormData) => {
+export const insertTip = async (formData: FormData) => {
 
     // ユーザー取得
     const supabase = await createClient();
@@ -11,7 +11,7 @@ export const postTip = async (formData: FormData) => {
     // ユーザー認証→ユーザーが存在しない場合はエラー
     if (!user) return { success: false, error: "Unauthorized" };
 
-    // PostTipsModal（postTipsModal.tsx）のhandleSubmit関数でpostTipの引数に渡されたformDataを取得
+    // insertTipsModal（insertTipsModal.tsx）のhandleSubmit関数でinsertTipの引数に渡されたformDataを取得
     const title = formData.get("title") as string;
     const tipText = formData.get("tip_text") as string | null;
     const categoryId = formData.get("category_id") as string

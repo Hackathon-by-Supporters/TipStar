@@ -1,6 +1,6 @@
-import { getAllTips } from "@/utils/queries/supabasefunctions";
-import PostTipsModal from "@/components/ui/postTipsModal";
-import PostTipButton from "@/components/ui/postTipButton";
+import { getAllTips } from "@/utils/queries/getTips";
+import InsertTipsModal from "@/components/ui/insertTipsModal";
+import InsertTipButton from "@/components/ui/insertTipButton";
 import TipsList from "@/components/ui/TipsList";
 export default async function Home() {
 
@@ -18,10 +18,10 @@ export default async function Home() {
           <p className="text-gray-600">大学生活のヒントを共有しよう！</p>
         </header>
 
-        <PostTipButton />
+        <InsertTipButton />
         <div className="p-4 space-y-4">
         {data && <TipsList tips={data} />}
-          <PostTipsModal />
+          <InsertTipsModal />
         </div>
       </div>
     </main>

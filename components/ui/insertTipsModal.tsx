@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
-import { postTip } from "@/utils/actions/postTip";
+import { insertTip } from "@/utils/actions/insertTip";
 
 type Category = {
     id: number;
     category_name: string;
 };
 
-export default function PostTipsModal() {
+export default function InsertTipsModal() {
     const [title, setTitle] = useState("");
     const [tipText, setTipText] = useState("");
     const [categoryId, setCategoryId] = useState("");
@@ -36,8 +36,8 @@ export default function PostTipsModal() {
         formData.append("tip_text", String(tipText));
         formData.append("category_id", String(categoryId));
 
-        // utils/actions/postTip.tsのpostTip関数を呼び出す（Server action）
-        const result = await postTip(formData); 
+        // utils/actions/insertTip.tsのinsertTip関数を呼び出す（Server action）
+        const result = await insertTip(formData); 
         setLoading(false);
 
         // 投稿成功時の処理
