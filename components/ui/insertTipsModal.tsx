@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
 import { insertTip } from "@/utils/actions/insertTip";
@@ -17,6 +17,8 @@ export default function InsertTipsModal() {
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(false);
 
+    const modalRef = useRef<HTMLDivElement | null>(null);
+
     // カテゴリー取得
     useEffect(() => {
         (async () => {
@@ -24,6 +26,53 @@ export default function InsertTipsModal() {
             const data = await res.json();
             setCategories(data ?? []);
         })();
+    }, []);
+
+    useEffect(() => {
+        const checkbox = document.getElementById("post-modal") as HTMLInputElement;
+
+        const setBodyPadding = () => {
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+            document.body.style.overflow = "hidden";
+        };
+
+        const resetBodyStyle = () => {
+            document.body.style.paddingRight = "";
+            document.body.style.overflow = "";
+        };
+
+        const observer = new MutationObserver(() => {
+            if (checkbox?.checked) {
+                setBodyPadding();
+            } else {
+                resetBodyStyle();
+            }
+        });
+
+        if (checkbox) {
+            observer.observe(checkbox, { attributes: true, attributeFilter: ["checked"] });
+        }
+
+        return () => {
+            observer.disconnect();
+            resetBodyStyle();
+        };
+    }, []);
+
+
+    // escキーでモーダルウィンドウ閉じる
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                const checkbox = document.getElementById("post-modal") as HTMLInputElement;
+                if (checkbox) checkbox.checked = false;
+            }
+        };
+        document.addEventListener("keydown", handleKeyDown);
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
     }, []);
 
     // 投稿の処理
@@ -37,7 +86,7 @@ export default function InsertTipsModal() {
         formData.append("category_id", String(categoryId));
 
         // utils/actions/insertTip.tsのinsertTip関数を呼び出す（Server action）
-        const result = await insertTip(formData); 
+        const result = await insertTip(formData);
         setLoading(false);
 
         // 投稿成功時の処理
@@ -53,14 +102,38 @@ export default function InsertTipsModal() {
         }
     };
 
+    // Enterキーおして投稿する
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            handleSubmit();
+        }
+    };
+
+    // モーダルウィンドウの背景押してモーダルウィンドウ閉じる
+    const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (e.target === modalRef.current) {
+            const checkbox = document.getElementById("post-modal") as HTMLInputElement;
+            if (checkbox) checkbox.checked = false;
+        }
+    };
+
+
     // UIはてきとうです
     return (
         <>
             <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
 
             <input type="checkbox" id="post-modal" className="modal-toggle" />
-            <div className="modal">
-                <div className="modal-box space-y-4">
+            <div
+                className="modal"
+                ref={modalRef}
+                onClick={handleBackgroundClick}
+            >
+                <div
+                    className="modal-box space-y-4"
+                    onKeyDown={handleKeyDown}
+                >
                     <h3 className="font-bold text-lg">Tips投稿</h3>
 
                     <input
@@ -94,7 +167,11 @@ export default function InsertTipsModal() {
                         <label htmlFor="post-modal" id="modal-close" className="btn">
                             閉じる
                         </label>
-                        <button className="btn btn-primary" onClick={handleSubmit} disabled={loading}>
+                        <button
+                            className="btn btn-primary"
+                            onClick={handleSubmit}
+                            disabled={loading}
+                        >
                             {loading ? "投稿中..." : "投稿"}
                         </button>
                     </div>

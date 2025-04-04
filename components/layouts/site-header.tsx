@@ -1,21 +1,50 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { signOut } from "@/utils/supabase-auth/authGoogle"
 
 export default function SiteHeader() {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const dropdownRef = useRef<HTMLDivElement>(null)
+    const router = useRouter()
     const isActive = (href: string) => pathname === href
+
+    // ログアウトする
+    async function handleLogout() {
+        const success = await signOut()
+        if (success) {
+            router.push("/login")
+        }
+    }
+
+
+    // ドロップダウンメニューの背景クリックしたらドロップダウンメニュー閉じる
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setIsDropdownOpen(false)
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
-            <div className="container flex h-16 items-center justify-between px-4">
+            <div className="flex h-16 items-center justify-between px-4 w-full">
                 {/* Left: Logo + Menu Button */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-shrink-0">
                     <button
                         className="btn btn-ghost btn-circle md:hidden"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -50,7 +79,7 @@ export default function SiteHeader() {
                 </div>
 
                 {/* Center: Navigation */}
-                <nav className="hidden md:flex md:items-center md:gap-6">
+                <nav className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-4">
                     {[
                         { href: "/", label: "ホーム" },
                         { href: "/my-tips", label: "My Tips" },
@@ -75,23 +104,56 @@ export default function SiteHeader() {
 
                 {/* Right: Avatar */}
                 <div className="flex items-center gap-2">
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                    <div 
+                    className="dropdown dropdown-end relative"
+                    ref={dropdownRef}
+                    >
+                        <button
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                            className="btn btn-ghost btn-circle avatar"
+                        >
                             <div className="w-8 rounded-full">
                                 <img src="/スクリーンショット 2025-04-02 19.30.37.svg" alt="ユーザー" />
                             </div>
-                        </label>
-                        <motion.ul
-                            tabIndex={0}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.2 }}
-                            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 origin-top-right"
-                        >
-                            <li><Link href="/profile">プロフィール</Link></li>
-                            <li><Link href="/my-tips">マイTips</Link></li>
-                            <li><a>ログアウト</a></li>
-                        </motion.ul>
+                        </button>
+                        <AnimatePresence>
+                            {isDropdownOpen && (
+                                <motion.ul
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="absolute right-0 mt-2 w-52 origin-top-right rounded-md bg-white p-2 shadow-lg z-50"
+                                >
+                                    <li>
+                                        <Link
+                                            href="/profile"
+                                            onClick={() => setIsDropdownOpen(false)}
+                                            className="block px-4 py-2 hover:bg-gray-100 rounded"
+                                        >
+                                            プロフィール
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            href="/my-tips"
+                                            onClick={() => setIsDropdownOpen(false)}
+                                            className="block px-4 py-2 hover:bg-gray-100 rounded"
+                                        >
+                                            マイTips
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <button
+                                            onClick={handleLogout}
+                                            className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded"
+                                        >
+                                            ログアウト
+                                        </button>
+                                    </li>
+                                </motion.ul>
+                            )}
+                        </AnimatePresence>
                     </div>
                 </div>
             </div>
