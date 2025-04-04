@@ -56,6 +56,7 @@ export default function SiteHeader() {
                         { href: "/my-tips", label: "My Tips" },
                         { href: "/donate", label: "投げ銭" },
                         { href: "/profile", label: "プロフィール" },
+                        { href: "/mypage", label: "マイページ" },
                     ].map((item) => (
                         <Link
                             key={item.href}
@@ -92,6 +93,7 @@ export default function SiteHeader() {
                             <li><Link href="/profile">プロフィール</Link></li>
                             <li><Link href="/my-tips">マイTips</Link></li>
                             <li><a>ログアウト</a></li>
+
                         </motion.ul>
 
                     </div>
