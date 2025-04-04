@@ -88,10 +88,12 @@ export default function SiteHeader() {
                             transition={{ duration: 0.2 }}
                             className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 origin-top-right"
                         >
+
                             <li><Link href="/profile">プロフィール</Link></li>
                             <li><Link href="/my-tips">マイTips</Link></li>
                             <li><a>ログアウト</a></li>
                         </motion.ul>
+
                     </div>
                 </div>
             </div>
