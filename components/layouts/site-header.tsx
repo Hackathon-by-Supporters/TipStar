@@ -117,8 +117,6 @@ export default function SiteHeader() {
                                 <img src="/スクリーンショット 2025-04-02 19.30.37.svg" alt="ユーザー" />
                             </div>
 
-
-
                         </button>
                         <AnimatePresence>
                             {isDropdownOpen && (
@@ -158,7 +156,6 @@ export default function SiteHeader() {
                                 </motion.ul>
                             )}
                         </AnimatePresence>
-
                     </div>
                 </div>
             </div>
