@@ -20,7 +20,7 @@ export default async function Home() {
           <h1 className="text-4xl font-bold text-purple-600 mb-2">
             Tip<span className="text-pink-500">Star</span>
           </h1>
-          <p className="font-bold text-gray-600">大学生活のヒントを共有しよう！</p>
+          <p className="font-bold text-gray-600">鮮文大学生活のヒントを共有しよう！</p>
         </header>
 
         <InsertTipButton />
