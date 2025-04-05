@@ -84,7 +84,6 @@ export default function SiteHeader() {
                         { href: "/", label: "ホーム" },
                         { href: "/my-tips", label: "My Tips" },
                         { href: "/donate", label: "投げ銭" },
-                        { href: "/profile", label: "プロフィール" },
                         { href: "/mypage", label: "マイページ" },
                     ].map((item) => (
                         <Link
