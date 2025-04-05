@@ -114,7 +114,7 @@ export default async function MyPage() {
 
 
     return (
-        <div className={`min-h-screen bg-gradient-to-br ${bgGradient}`}>
+        <div className="bg-gray-100 from-pink-100 via-purple-100 to-indigo-100">
 
 
             <main className="mx-auto max-w-7xl px-4 py-8">
