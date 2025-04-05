@@ -4,7 +4,7 @@
 import { createClient } from "@/utils/supabase-auth/server";
 
 // いいね情報をinsert
-export const insertLike = async (formData: FormData) => {
+export const insertLike = async (user_id: string,tip_id:string) => {
 
     // ユーザー取得
     const supabase = await createClient();
@@ -12,18 +12,11 @@ export const insertLike = async (formData: FormData) => {
 
     // ユーザー認証→ユーザーが存在しない場合はエラー
     if (!user) return { success: false, error: "Unauthorized" };
-
     /*
-    
-    
-        ここに良いね情報のinsert処理（仮）
-
         likesテーブルへの挿入時に渡すべきデータ
         →usersテーブルのidをlikesテーブルのuser_idに挿入
         →tipsテーブルのidをlikesテーブルのtip_idに挿入
-    
-    
     */
-
+    await supabase.from("likes").insert({ user_id: user_id, tip_id: tip_id });
     return { success: true };
 };
