@@ -45,21 +45,6 @@ export default function SiteHeader() {
             <div className="flex h-16 items-center justify-between px-4 w-full">
                 {/* Left: Logo + Menu Button */}
                 <div className="flex items-center gap-2 flex-shrink-0">
-                    <button
-                        className="btn btn-ghost btn-circle md:hidden"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                        {isMenuOpen ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="h-5 w-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="h-5 w-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
-                            </svg>
-                        )}
-                    </button>
-
                     <Link href="/" className="flex items-center gap-1">
                         <motion.div
                             whileHover={{ rotate: [0, 15, -15, 0] }}
@@ -83,8 +68,6 @@ export default function SiteHeader() {
                     {[
                         { href: "/", label: "ホーム" },
                         { href: "/my-tips", label: "My Tips" },
-                        { href: "/donate", label: "投げ銭" },
-                        { href: "/profile", label: "プロフィール" },
                         { href: "/mypage", label: "マイページ" },
                     ].map((item) => (
                         <Link
@@ -146,6 +129,15 @@ export default function SiteHeader() {
                                         </Link>
                                     </li>
                                     <li>
+                                        <Link
+                                            href="/donate"
+                                            onClick={() => setIsDropdownOpen(false)}
+                                            className="block px-4 py-2 hover:bg-gray-100 rounded"
+                                        >
+                                            投げ銭
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <button
                                             onClick={handleLogout}
                                             className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded"
@@ -161,7 +153,7 @@ export default function SiteHeader() {
             </div>
 
             {/* Mobile Menu (AnimatePresenceでスライド) */}
-            <AnimatePresence>
+            {/* <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
                         initial={{ x: "-100%" }}
@@ -186,7 +178,7 @@ export default function SiteHeader() {
                         </nav>
                     </motion.div>
                 )}
-            </AnimatePresence>
+            </AnimatePresence> */}
         </header>
     )
 }
