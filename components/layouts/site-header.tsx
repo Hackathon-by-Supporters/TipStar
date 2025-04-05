@@ -105,9 +105,9 @@ export default function SiteHeader() {
 
                 {/* Right: Avatar */}
                 <div className="flex items-center gap-2">
-                    <div 
-                    className="dropdown dropdown-end relative"
-                    ref={dropdownRef}
+                    <div
+                        className="dropdown dropdown-end relative"
+                        ref={dropdownRef}
                     >
                         <button
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -116,6 +116,7 @@ export default function SiteHeader() {
                             <div className="w-8 rounded-full">
                                 <img src="/スクリーンショット 2025-04-02 19.30.37.svg" alt="ユーザー" />
                             </div>
+
                         </button>
                         <AnimatePresence>
                             {isDropdownOpen && (
