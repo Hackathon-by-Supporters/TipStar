@@ -1,4 +1,15 @@
 import { getUserProfile } from "@/utils/userget/usersget"
+import { Poppins } from "next/font/google"
+import { Montserrat, M_PLUS_Rounded_1c, Noto_Sans_JP } from 'next/font/google'
+
+const NotoSansJP = Noto_Sans_JP({ subsets: ['latin'], weight: ['600'] })
+const mplus = M_PLUS_Rounded_1c({ subsets: ['latin'], weight: ['500'] })
+
+
+const poppins = Poppins({
+    subsets: ["latin"],
+    weight: ["400", "600", "700"],
+});
 
 // ポイントに基づいて背景色を決定する関数
 function getBackgroundColorByPoints(points: number): string {
@@ -108,8 +119,9 @@ export default async function MyPage() {
 
             <main className="mx-auto max-w-7xl px-4 py-8">
                 <div className="text-center mb-8">
-                    <h2 className={`text-3xl font-bold ${titleColor}`}>マイページ</h2>
-                    <p className="mt-2 text-gray-600">🌍 あなたのプロフィールと獲得ポイント</p>
+
+                    <h2 className={`text-3xl font-bold relative inline-block ${NotoSansJP.className}`}>マイページ</h2>
+                    <p className="mt-2 text-gray-600">🌏 あなたのプロフィールと獲得ポイント</p>
                 </div>
 
                 {/* ユーザー情報 + ランクカード統合 */}
@@ -132,11 +144,7 @@ export default async function MyPage() {
                             <p className="text-xl font-semibold text-gray-700">
                                 ポイント：<span className="text-red-500 text-3xl font-extrabold">{points} pt</span>
                             </p>
-                        </div>
 
-
-                        {/* ランク情報 */}
-                        <div className="text-center">
                             <h3 className={`text-xl font-bold ${titleColor}`}>現在のランク</h3>
                             <h4 className={`text-2xl font-bold ${titleColor} mt-2`}>{rankName}</h4>
                             <p className="text-gray-600 text-sm mt-1">
@@ -146,7 +154,14 @@ export default async function MyPage() {
                                 {colorLevel === 3 && "グリーンランクに到達しました。上級者の証です！"}
                                 {colorLevel === 4 && "パープルランクに到達しました。エキスパートの証です！"}
                             </p>
+
+
+
                         </div>
+
+
+                        {/* ランク情報 */}
+
 
                         {/* 色・進捗バー */}
                         <div className="mt-4 pt-4 border-t border-gray-100">
