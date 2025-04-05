@@ -102,13 +102,6 @@ export default function InsertTipsModal() {
         }
     };
 
-    // Enterキーおして投稿する
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault();
-            handleSubmit();
-        }
-    };
 
     // モーダルウィンドウの背景押してモーダルウィンドウ閉じる
     const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -132,7 +125,6 @@ export default function InsertTipsModal() {
             >
                 <div
                     className="modal-box space-y-4"
-                    onKeyDown={handleKeyDown}
                 >
                     <h3 className="font-bold text-lg">Tips投稿</h3>
 
