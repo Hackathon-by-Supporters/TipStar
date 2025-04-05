@@ -25,7 +25,7 @@ export default async function Home() {
 
         <InsertTipButton />
         <div className="p-4 space-y-4">
-        {data && <TipsList tips={data} />}
+          {data && <TipsList tips={data} />}
           <InsertTipsModal />
         </div>
       </div>
