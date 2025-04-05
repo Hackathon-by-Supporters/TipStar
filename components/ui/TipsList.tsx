@@ -1,8 +1,9 @@
 import LikesButton from "./likesButton";
+import { hasUserLiked } from "@/utils/actions/hasUserLiked"; // ← 追加
 
 type Tip = {
   id: string;
-  user_id: string
+  user_id: string;
   title: string;
   tip_text: string;
   likes: number;
@@ -12,11 +13,17 @@ type Props = {
   tips: Tip[];
 };
 
-export default function TipsList({ tips }: Props) {
-  // ここに「いいね」をSupabaseにinsertするための関数(insertLike（仮名）)を実行するための関数を定義
+export default async function TipsList({ tips }: Props) {
+  const tipsWithLikedStatus = await Promise.all(
+    tips.map(async (tip) => {
+      const hasLiked = await hasUserLiked(tip.user_id, tip.id);
+      return { ...tip, hasLiked };
+    })
+  );
+
   return (
     <ul className="space-y-6">
-      {tips.map((tip) => (
+      {tipsWithLikedStatus.map((tip) => (
         <div
           className="card bg-base-100 overflow-hidden hover:shadow-lg transition-shadow"
           key={tip.id}
@@ -29,7 +36,12 @@ export default function TipsList({ tips }: Props) {
               <p className="text-gray-700">{tip.tip_text}</p>
               <div className="flex items-center pt-2 border-t border-gray-100">
                 <div className="justify-start card-actions">
-                <LikesButton user_id={tip.user_id} tip_id={tip.id} likes={tip.likes}/>
+                  <LikesButton
+                    user_id={tip.user_id}
+                    tip_id={tip.id}
+                    likes={tip.likes}
+                    hasLiked={tip.hasLiked}
+                  />
                 </div>
               </div>
             </li>

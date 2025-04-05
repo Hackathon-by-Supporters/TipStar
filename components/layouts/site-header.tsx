@@ -41,7 +41,7 @@ export default function SiteHeader() {
     }, [])
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
+        <header className="bg-gradient-to-r from-cyan-300 to-blue-400">
             <div className="flex h-16 items-center justify-between px-4 w-full">
                 {/* Left: Logo + Menu Button */}
                 <div className="flex items-center gap-2 flex-shrink-0">
