@@ -85,6 +85,7 @@ export default function SiteHeader() {
                         { href: "/my-tips", label: "My Tips" },
                         { href: "/donate", label: "投げ銭" },
                         { href: "/profile", label: "プロフィール" },
+                        { href: "/mypage", label: "マイページ" },
                     ].map((item) => (
                         <Link
                             key={item.href}
@@ -115,6 +116,23 @@ export default function SiteHeader() {
                             <div className="w-8 rounded-full">
                                 <img src="/スクリーンショット 2025-04-02 19.30.37.svg" alt="ユーザー" />
                             </div>
+<<<<<<< HEAD
+                        </label>
+                        <motion.ul
+                            tabIndex={0}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.2 }}
+                            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 origin-top-right"
+                        >
+
+                            <li><Link href="/profile">プロフィール</Link></li>
+                            <li><Link href="/my-tips">マイTips</Link></li>
+                            <li><a>ログアウト</a></li>
+
+                        </motion.ul>
+
+=======
                         </button>
                         <AnimatePresence>
                             {isDropdownOpen && (
@@ -154,6 +172,7 @@ export default function SiteHeader() {
                                 </motion.ul>
                             )}
                         </AnimatePresence>
+>>>>>>> 3c496c88bed24bda7606b7cf1e0f5906dd433982
                     </div>
                 </div>
             </div>
