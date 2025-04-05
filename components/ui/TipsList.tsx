@@ -1,7 +1,11 @@
+import LikesButton from "./likesButton";
+
 type Tip = {
   id: string;
+  user_id: string
   title: string;
   tip_text: string;
+  likes: number;
 };
 
 type Props = {
@@ -25,7 +29,7 @@ export default function TipsList({ tips }: Props) {
               <p className="text-gray-700">{tip.tip_text}</p>
               <div className="flex items-center pt-2 border-t border-gray-100">
                 <div className="justify-start card-actions">
-                  ここに良いねボタン
+                <LikesButton user_id={tip.user_id} tip_id={tip.id} likes={tip.likes}/>
                 </div>
               </div>
             </li>
