@@ -45,21 +45,6 @@ export default function SiteHeader() {
             <div className="flex h-16 items-center justify-between px-4 w-full">
                 {/* Left: Logo + Menu Button */}
                 <div className="flex items-center gap-2 flex-shrink-0">
-                    <button
-                        className="btn btn-ghost btn-circle md:hidden"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                        {isMenuOpen ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="h-5 w-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="h-5 w-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
-                            </svg>
-                        )}
-                    </button>
-
                     <Link href="/" className="flex items-center gap-1">
                         <motion.div
                             whileHover={{ rotate: [0, 15, -15, 0] }}
@@ -83,7 +68,6 @@ export default function SiteHeader() {
                     {[
                         { href: "/", label: "ホーム" },
                         { href: "/my-tips", label: "My Tips" },
-                        { href: "/donate", label: "投げ銭" },
                         { href: "/mypage", label: "マイページ" },
                     ].map((item) => (
                         <Link
@@ -128,20 +112,11 @@ export default function SiteHeader() {
                                 >
                                     <li>
                                         <Link
-                                            href="/profile"
+                                            href="/donate"
                                             onClick={() => setIsDropdownOpen(false)}
                                             className="block px-4 py-2 hover:bg-gray-100 rounded"
                                         >
-                                            プロフィール
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href="/my-tips"
-                                            onClick={() => setIsDropdownOpen(false)}
-                                            className="block px-4 py-2 hover:bg-gray-100 rounded"
-                                        >
-                                            マイTips
+                                            投げ銭
                                         </Link>
                                     </li>
                                     <li>
@@ -158,34 +133,6 @@ export default function SiteHeader() {
                     </div>
                 </div>
             </div>
-
-            {/* Mobile Menu (AnimatePresenceでスライド) */}
-            <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.div
-                        initial={{ x: "-100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "-100%" }}
-                        transition={{ duration: 0.3 }}
-                        className="fixed inset-0 top-16 z-40 flex flex-col bg-white p-6 md:hidden"
-                    >
-                        <nav className="flex flex-col gap-4">
-                            <Link href="/" className="text-lg font-medium text-gray-600 hover:text-purple-600">
-                                ホーム
-                            </Link>
-                            <Link href="/donate" className="text-lg font-medium text-gray-600 hover:text-purple-600">
-                                投げ銭
-                            </Link>
-                            <Link href="my-tips" className="text-lg font-medium text-gray-600 hover:text-purple-600">
-                                My Tips
-                            </Link>
-                            <Link href="/profile" className="text-lg font-medium text-gray-600 hover:text-purple-600">
-                                プロフィール
-                            </Link>
-                        </nav>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </header>
     )
 }
