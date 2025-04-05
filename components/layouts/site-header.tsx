@@ -112,24 +112,6 @@ export default function SiteHeader() {
                                 >
                                     <li>
                                         <Link
-                                            href="/profile"
-                                            onClick={() => setIsDropdownOpen(false)}
-                                            className="block px-4 py-2 hover:bg-gray-100 rounded"
-                                        >
-                                            プロフィール
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href="/my-tips"
-                                            onClick={() => setIsDropdownOpen(false)}
-                                            className="block px-4 py-2 hover:bg-gray-100 rounded"
-                                        >
-                                            マイTips
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
                                             href="/donate"
                                             onClick={() => setIsDropdownOpen(false)}
                                             className="block px-4 py-2 hover:bg-gray-100 rounded"
@@ -151,34 +133,6 @@ export default function SiteHeader() {
                     </div>
                 </div>
             </div>
-
-            {/* Mobile Menu (AnimatePresenceでスライド) */}
-            {/* <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.div
-                        initial={{ x: "-100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "-100%" }}
-                        transition={{ duration: 0.3 }}
-                        className="fixed inset-0 top-16 z-40 flex flex-col bg-white p-6 md:hidden"
-                    >
-                        <nav className="flex flex-col gap-4">
-                            <Link href="/" className="text-lg font-medium text-gray-600 hover:text-purple-600">
-                                ホーム
-                            </Link>
-                            <Link href="/donate" className="text-lg font-medium text-gray-600 hover:text-purple-600">
-                                投げ銭
-                            </Link>
-                            <Link href="my-tips" className="text-lg font-medium text-gray-600 hover:text-purple-600">
-                                My Tips
-                            </Link>
-                            <Link href="/profile" className="text-lg font-medium text-gray-600 hover:text-purple-600">
-                                プロフィール
-                            </Link>
-                        </nav>
-                    </motion.div>
-                )}
-            </AnimatePresence> */}
         </header>
     )
 }
