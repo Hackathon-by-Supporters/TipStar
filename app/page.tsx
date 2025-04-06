@@ -4,6 +4,13 @@ import InsertTipButton from "@/components/ui/insertTipButton";
 import InsertTipButtonAlways from "@/components/ui/insertTipButtonAlways";
 import TipsList from "@/components/ui/TipsList";
 
+import { DotGothic16 } from "next/font/google";
+
+const dotGothic16 = DotGothic16({
+  weight: "400", // DotGothic16 は 400 のみです
+  subsets: ["latin"],
+  display: "swap", // 推奨設定
+});
 export default async function Home() {
   // これが正しくSSRできてるのかは怪しいw
   const { data } = await getAllTips();
@@ -14,7 +21,7 @@ export default async function Home() {
 
       <div className="container mx-auto px-4 py-8">
         <header className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-purple-600 mb-2">
+          <h1 className={`text-4xl font-bold text-purple-600 mb-2 ${dotGothic16.className}`}>
             Tip<span className="text-pink-500">Star</span>
           </h1>
           <p className="font-bold text-gray-600">

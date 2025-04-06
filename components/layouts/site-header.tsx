@@ -6,7 +6,13 @@ import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { signOut } from "@/utils/supabase-auth/authGoogle";
 import Image from "next/image";
+import { DotGothic16 } from "next/font/google";
 
+const dotGothic16 = DotGothic16({
+  weight: "400", // DotGothic16 は 400 のみです
+  subsets: ["latin"],
+  display: "swap", // 推奨設定
+});
 export default function SiteHeader() {
     const pathname = usePathname();
     const [isMenuOpen] = useState(false);
@@ -23,38 +29,20 @@ export default function SiteHeader() {
         }
     }
 
-    // // ドロップダウンメニューの背景クリックしたらドロップダウンメニュー閉じる
-    // useEffect(() => {
-    //   const handleClickOutside = (event: MouseEvent) => {
-    //     if (
-    //       dropdownRef.current &&
-    //       !dropdownRef.current.contains(event.target as Node)
-    //     ) {
-    //       setIsDropdownOpen(false);
-    //     }
-    //   };
-
-    //   document.addEventListener("mousedown", handleClickOutside);
-    //   return () => {
-    //     document.removeEventListener("mousedown", handleClickOutside);
-    //   };
-    // }, []);
-
-    return (
-        <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm shadow-lg">
-            <div className="flex h-16 items-center justify-between px-4 w-full">
-                {/* Left: Logo + Menu Button */}
-                <div className="flex items-center flex-shrink-0">
-                    <Link href="/" className="flex items-center">
-                        <div className="">
-                            <Image
-                                src="/star_2.jpeg"
-                                alt="TipStarロゴ"
-                                width={60}
-                                height={60}
-                                className="rounded-full object-cover"
-                            />
-                        </div>
+  return (
+    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm shadow-lg">
+      <div className="flex h-16 items-center justify-between px-4 w-full">
+        {/* Left: Logo + Menu Button */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <Link href="/" className="flex gap-1 justify-center">
+            <Image src="/tipstar2.png" alt="" width={40} height={40} />
+            <span
+              className={`text-3xl font-bold text-purple-500 ${dotGothic16.className}`}
+            >
+              Tip<span className="text-pink-500">Star</span>
+            </span>
+          </Link>
+        </div>
 
                         <span className="text-xl font-bold text-purple-600">
                             Tip<span className="text-pink-500">Star</span>
