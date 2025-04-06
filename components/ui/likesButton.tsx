@@ -33,7 +33,7 @@ export default function LikesButton({
       disabled={liked}
       className={`btn ${
         liked
-          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+          ? "text-black"
           : "bg-white text-pink-600 hover:bg-pink-600 hover:text-white"
       }`}
     >

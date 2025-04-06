@@ -22,16 +22,16 @@ export default async function TipsList({ tips }: Props) {
   );
 
   return (
-    <ul className="space-y-6">
+    <ul className="flex flex-wrap gap-10 justify-center">
       {tipsWithLikedStatus.map((tip) => (
         <div
-          className="card bg-base-100 overflow-hidden hover:shadow-lg transition-shadow"
+          className="card bg-base-100 overflow-hidden border-2 border-gray-200 hover:shadow-lg transition-shadow w-1/4 rounded-2xl"
           key={tip.id}
         >
           <div className="card-body">
             <li className="p-2">
               <h2 className="card-title font-semibold text-gray-700">
-                {tip.title} 
+                {tip.title}
               </h2>
               <p className="text-gray-700">{tip.tip_text}</p>
               <div className="flex items-center pt-2 border-t border-gray-100">
