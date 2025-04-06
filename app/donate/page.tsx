@@ -4,7 +4,7 @@ export default function DonatePage() {
   return (
     <main className="min-h-screen bg-white">
       {/* ヒーロー */}
-      <section className="bg-gradient-to-b from-purple-50 to-pink-50 py-10 text-center">
+      <section className="bg-purple-200 py-10 text-center">
         <div className="inline-block bg-purple-100 text-purple-700 px-4 py-1 rounded-full text-sm font-medium mb-8">
           韓国留学Tips開発チーム
         </div>
