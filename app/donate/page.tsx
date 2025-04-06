@@ -2,7 +2,7 @@ import DonationForm from "@/components/ui/donation-form";
 
 export default function DonatePage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white flex flex-col justify-between">
       {/* ヒーロー */}
       <section className="bg-purple-200 py-10 text-center">
         <div className="inline-block bg-purple-100 text-purple-700 px-4 py-1 rounded-full text-sm font-medium mb-8">
@@ -14,8 +14,8 @@ export default function DonatePage() {
       </section>
 
       {/* フォーム */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-40 flex items-center justify-center">
+      <section className="py-16 flex items-center justify-center">
+        <div>
           <DonationForm />
         </div>
       </section>
