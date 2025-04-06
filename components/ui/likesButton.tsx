@@ -1,6 +1,7 @@
 "use client";
 
 import { insertLike } from "@/utils/actions/insertLikes";
+import { Heart } from "lucide-react";
 import { useState } from "react";
 
 type LikesButtonProps = {
@@ -36,7 +37,13 @@ export default function LikesButton({
           : "bg-white text-pink-600 hover:bg-pink-600 hover:text-white"
       }`}
     >
-      {liked ? `いいね済み ${likeCount}` : `いいねする ${likeCount}`}
+      {liked ? (
+        `いいね済み ${likeCount}`
+      ) : (
+        <>
+          <Heart /> {likeCount}
+        </>
+      )}
     </button>
   );
 }
