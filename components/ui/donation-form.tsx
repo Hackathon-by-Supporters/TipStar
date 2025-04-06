@@ -2,7 +2,7 @@
 
 export default function DonationForm() {
   return (
-    <div className="relative left-1/2 p-4 bg-purple-50 rounded-lg text-sm space-y-3 border border-purple-100">
+    <div className="p-4 bg-purple-50 rounded-lg text-sm space-y-3 border border-purple-100">
       <div className="font-medium text-purple-800">
         口座送金情報（계좌이체）
       </div>
@@ -12,7 +12,7 @@ export default function DonationForm() {
         <div className="col-span-2 text-gray-700">국민은행 (国民銀行)</div>
 
         <div className="text-purple-600">口座番号:</div>
-        <div className="col-span-2 text-gray-700">484601-04-141654</div>
+        <div className="col-span-2 text-gray-700">000000-00-000000</div>
 
         <div className="text-purple-600">口座名義:</div>
         <div className="col-span-2 text-gray-700">TipStar</div>
