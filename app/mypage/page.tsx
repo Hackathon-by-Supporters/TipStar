@@ -95,8 +95,8 @@ function getRankNameByPoints(points: number): string {
 export default async function MyPage() {
     const result = await getUserProfile()
 
-    const username = result.success ? result.profile.username : "ゲスト"
-    const points = result.success ? result.profile.points : 0
+    const username = result.success ? result.profile?.username : "ゲスト"
+    const points = result.success ? result.profile?.points : 0
 
     // ポイントに基づいて背景色とテキストカラーを取得
     const bgGradient = getBackgroundColorByPoints(points)
