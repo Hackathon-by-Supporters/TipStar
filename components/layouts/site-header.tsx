@@ -2,15 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { signOut } from "@/utils/supabase-auth/authGoogle";
-import { Star } from "lucide-react";
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const isActive = (href: string) => pathname === href;
@@ -23,25 +22,25 @@ export default function SiteHeader() {
     }
   }
 
-  // ドロップダウンメニューの背景クリックしたらドロップダウンメニュー閉じる
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsDropdownOpen(false);
-      }
-    };
+  // // ドロップダウンメニューの背景クリックしたらドロップダウンメニュー閉じる
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       dropdownRef.current &&
+  //       !dropdownRef.current.contains(event.target as Node)
+  //     ) {
+  //       setIsDropdownOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm shadow-lg">
       <div className="flex h-16 items-center justify-between px-4 w-full">
         {/* Left: Logo + Menu Button */}
         <div className="flex items-center gap-2 flex-shrink-0">
@@ -51,7 +50,22 @@ export default function SiteHeader() {
               transition={{ duration: 0.6 }}
               className=""
             >
-              <Star className="text-yellow-500" />
+              <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-1.5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5 text-white"
+                >
+                  <path d="M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6Z"></path>
+                  <path d="M12 13v8"></path>
+                  <path d="M5 13v6a2 2 0 0 0 2 2h8"></path>
+                </svg>
+              </div>
             </motion.div>
             <span className="text-xl font-bold text-purple-600">
               Tip<span className="text-pink-500">Star</span>
@@ -64,9 +78,8 @@ export default function SiteHeader() {
           {[
             { href: "/", label: "ホーム" },
             { href: "/my-tips", label: "My Tips" },
-            { href: "/donate", label: "投げ銭" },
-            { href: "/profile", label: "プロフィール" },
             { href: "/mypage", label: "マイページ" },
+            { href: "/donate", label: "投げ銭" },
           ].map((item) => (
             <Link
               key={item.href}
@@ -90,54 +103,11 @@ export default function SiteHeader() {
         <div className="flex items-center gap-2">
           <div className="dropdown dropdown-end relative" ref={dropdownRef}>
             <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="btn btn-ghost btn-circle avatar"
+              onClick={handleLogout}
+              className="btn btn-outline btn-secondary"
             >
-              <div className="w-8 rounded-full">
-                <img
-                  src="/スクリーンショット 2025-04-02 19.30.37.svg"
-                  alt="ユーザー"
-                />
-              </div>
+              ログアウト
             </button>
-            <AnimatePresence>
-              {isDropdownOpen && (
-                <motion.ul
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute right-0 mt-2 w-52 origin-top-right rounded-md bg-white p-2 shadow-lg z-50"
-                >
-                  <li>
-                    <Link
-                      href="/profile"
-                      onClick={() => setIsDropdownOpen(false)}
-                      className="block px-4 py-2 hover:bg-gray-100 rounded"
-                    >
-                      プロフィール
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/my-tips"
-                      onClick={() => setIsDropdownOpen(false)}
-                      className="block px-4 py-2 hover:bg-gray-100 rounded"
-                    >
-                      マイTips
-                    </Link>
-                  </li>
-                  <li>
-                    <button
-                      onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded"
-                    >
-                      ログアウト
-                    </button>
-                  </li>
-                </motion.ul>
-              )}
-            </AnimatePresence>
           </div>
         </div>
       </div>
@@ -183,5 +153,4 @@ export default function SiteHeader() {
       </AnimatePresence>
     </header>
   );
-
 }
