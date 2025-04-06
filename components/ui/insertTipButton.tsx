@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 
-const MotionLabel = motion.label;
 
 export default function InsertTipButton() {
     return (

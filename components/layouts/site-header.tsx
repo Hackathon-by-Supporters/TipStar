@@ -5,7 +5,14 @@ import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { signOut } from "@/utils/supabase-auth/authGoogle";
+import Image from "next/image";
+import { DotGothic16 } from "next/font/google";
 
+const dotGothic16 = DotGothic16({
+  weight: "400", // DotGothic16 は 400 のみです
+  subsets: ["latin"],
+  display: "swap", // 推奨設定
+});
 export default function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen] = useState(false);
@@ -22,52 +29,16 @@ export default function SiteHeader() {
     }
   }
 
-  // // ドロップダウンメニューの背景クリックしたらドロップダウンメニュー閉じる
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       dropdownRef.current &&
-  //       !dropdownRef.current.contains(event.target as Node)
-  //     ) {
-  //       setIsDropdownOpen(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
-
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm shadow-lg">
       <div className="flex h-16 items-center justify-between px-4 w-full">
         {/* Left: Logo + Menu Button */}
         <div className="flex items-center gap-2 flex-shrink-0">
-          <Link href="/" className="flex items-center gap-1">
-            <motion.div
-              whileHover={{ rotate: [0, 15, -15, 0] }}
-              transition={{ duration: 0.6 }}
-              className=""
+          <Link href="/" className="flex gap-1 justify-center">
+            <Image src="/tipstar2.png" alt="" width={40} height={40} />
+            <span
+              className={`text-3xl font-bold text-purple-500 ${dotGothic16.className}`}
             >
-              <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-1.5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 text-white"
-                >
-                  <path d="M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6Z"></path>
-                  <path d="M12 13v8"></path>
-                  <path d="M5 13v6a2 2 0 0 0 2 2h8"></path>
-                </svg>
-              </div>
-            </motion.div>
-            <span className="text-xl font-bold text-purple-600">
               Tip<span className="text-pink-500">Star</span>
             </span>
           </Link>
