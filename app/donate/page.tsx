@@ -1,24 +1,14 @@
-// export default function Mytips() {
-//     return (
-//         <main className="min-h-screen bg-gradient-to-b from-purple-50 to-pink-50 flex justify-center items-center">
-//             <div className="container text-center">
-//                 投げ銭ページ
-//             </div>
-//         </main>
-//     );
-// }
-
 import DonationForm from "@/components/ui/donation-form";
 
 export default function DonatePage() {
   return (
     <main className="min-h-screen bg-white">
       {/* ヒーロー */}
-      <section className="py-4 md:py-10 max-w-4xl mx-auto text-center px-4">
-        <div className="inline-block bg-purple-100 text-purple-700 px-4 py-1 rounded-full text-sm font-medium mb-4">
+      <section className="bg-gradient-to-b from-purple-50 to-pink-50 py-10 text-center">
+        <div className="inline-block bg-purple-100 text-purple-700 px-4 py-1 rounded-full text-sm font-medium mb-8">
           韓国留学Tips開発チーム
         </div>
-        <h2 className="text-4xl md:text-4xl font-bold text-purple-800 mb-2">
+        <h2 className="text-4xl md:text-4xl font-bold text-purple-700 mb-2">
           あなたの応援が私たちの原動力です
         </h2>
       </section>
