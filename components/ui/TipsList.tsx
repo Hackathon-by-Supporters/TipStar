@@ -1,5 +1,5 @@
 import LikesButton from "./likesButton";
-import { hasUserLiked } from "@/utils/actions/hasUserLiked"; // ← 追加
+import { hasUserLiked } from "@/utils/actions/hasUserLiked";
 
 type Tip = {
   id: string;
@@ -29,9 +29,9 @@ export default async function TipsList({ tips }: Props) {
           key={tip.id}
         >
           <div className="card-body">
-            <li className="p-4 bg-white shadow rounded-lg border border-purple-100">
+            <li className="p-2">
               <h2 className="card-title font-semibold text-gray-700">
-                {tip.title}
+                {tip.title} 
               </h2>
               <p className="text-gray-700">{tip.tip_text}</p>
               <div className="flex items-center pt-2 border-t border-gray-100">
