@@ -19,12 +19,14 @@ export default async function Home() {
     <main className="min-h-screen bg-gradient-to-b from-purple-50 to-pink-50 relative">
       <InsertTipButtonAlways />
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 p-10">
         <header className="mb-8 text-center">
-          <h1 className={`text-4xl font-bold text-purple-600 mb-2 ${dotGothic16.className}`}>
+          <h1
+            className={`text-4xl font-bold text-purple-600 mb-8 ${dotGothic16.className}`}
+          >
             Tip<span className="text-pink-500">Star</span>
           </h1>
-          <p className="font-bold text-gray-600">
+          <p className="text-xl font-bold text-gray-600">
             大学生活のヒントを共有しよう！
           </p>
         </header>
