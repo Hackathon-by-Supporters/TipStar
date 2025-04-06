@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+
 
 export default function SiteFooter() {
     return (
@@ -6,23 +8,17 @@ export default function SiteFooter() {
             <div className="container px-4 py-8 md:py-12">
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                     <div>
-                        <Link href="/" className="flex items-center gap-1">
-                            <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-1.5">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="h-5 w-5 text-white"
-                                >
-                                    <path d="M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6Z"></path>
-                                    <path d="M12 13v8"></path>
-                                    <path d="M5 13v6a2 2 0 0 0 2 2h8"></path>
-                                </svg>
+                        <Link href="/" className="flex items-center">
+                            <div className="">
+                                <Image
+                                    src="/star_2.jpeg"
+                                    alt="TipStarロゴ"
+                                    width={60}
+                                    height={60}
+                                    className="rounded-full object-cover"
+                                />
                             </div>
+
                             <span className="text-xl font-bold text-purple-600">
                                 Tip<span className="text-pink-500">Star</span>
                             </span>
@@ -62,7 +58,7 @@ export default function SiteFooter() {
                             </li>
                         </ul>
                     </div>
-                    
+
                     <div>
                         <h3 className="mb-4 text-lg font-semibold text-gray-900">サポート</h3>
                         <ul className="space-y-2 text-sm">
@@ -91,7 +87,7 @@ export default function SiteFooter() {
                 </div>
 
                 <div className="mt-8 border-t border-gray-200 pt-6 text-center text-sm text-gray-500"></div>
-                    <p>© {new Date().getFullYear()} TipStar. All rights reserved.</p> 
+                <p>© {new Date().getFullYear()} TipStar. All rights reserved.</p>
             </div>
         </footer>
     );
