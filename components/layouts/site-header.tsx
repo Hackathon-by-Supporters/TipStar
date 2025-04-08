@@ -60,23 +60,34 @@ export default function SiteHeader() {
             { href: "/my-tips", label: "My Tips" },
             { href: "/mypage", label: "マイページ" },
             { href: "/donate", label: "♡開発者を応援する" },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`relative text-base font-bold transition-colors hover:text-purple-600 ${
-                isActive(item.href) ? "text-purple-600" : "text-gray-600"
-              }`}
-            >
-              {isActive(item.href) && (
-                <motion.span
-                  layoutId="underline"
-                  className="absolute -bottom-1 left-0 h-0.5 w-full bg-purple-500"
-                />
-              )}
-              {item.label}
-            </Link>
-          ))}
+          ].map((item) => {
+            const isDonate = item.href === "/donate";
+            const active = isActive(item.href);
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`relative text-base font-bold transition-colors ${
+                  isDonate
+                    ? "text-pink-500 hover:text-pink-600"
+                    : active
+                    ? "text-purple-600 hover:text-purple-600"
+                    : "text-gray-600 hover:text-purple-600"
+                }`}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="underline"
+                    className={`absolute -bottom-1 left-0 h-0.5 w-full ${
+                      isDonate ? "bg-pink-500" : "bg-purple-500"
+                    }`}
+                  />
+                )}
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right: Logout */}
